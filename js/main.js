@@ -360,6 +360,43 @@
     bform.querySelectorAll("input[data-bild]").forEach(function (cb) {
       cb.addEventListener("change", function () { if (cb.checked) oeffnen(cb.getAttribute("data-bild"), cb); });
     });
+
+    // Vorschau beim Drüberfahren – nur bei echter Maus, nicht am Handy
+    var tipp = document.getElementById("bildtipp");
+    if (tipp && window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      var tBild = tipp.querySelector("img"), tText = tipp.querySelector("span"), tTimer = null, tAktiv = false;
+      function tippZeigen(label) {
+        var key = label.querySelector("input[data-bild]").getAttribute("data-bild");
+        vorladen();
+        tBild.src = basis + "bilder/jobs/" + key + ".webp";
+        tText.textContent = BEREICHE[key][0];
+        tipp.hidden = false;
+        var r = label.getBoundingClientRect(), b = 260, h = 195 + 34;
+        var x = Math.min(Math.max(8, r.left + r.width / 2 - b / 2), window.innerWidth - b - 8);
+        var oben = r.top - h - 14 > 8;
+        tipp.style.left = x + "px";
+        tipp.style.top = (oben ? r.top - h - 14 : r.bottom + 14) + "px";
+        tipp.classList.toggle("unten", !oben);
+        tipp.style.setProperty("--pfeil", (r.left + r.width / 2 - x) + "px");
+        clearTimeout(tTimer);
+        tAktiv = true;
+        requestAnimationFrame(function () { if (tAktiv) tipp.classList.add("sichtbar"); });
+      }
+      function tippWeg() {
+        tAktiv = false;
+        tipp.classList.remove("sichtbar");
+        clearTimeout(tTimer);
+        tTimer = setTimeout(function () { tipp.hidden = true; }, 180);
+      }
+      bform.querySelectorAll("input[data-bild]").forEach(function (cb) {
+        var label = cb.closest("label");
+        label.addEventListener("mouseenter", function () { tippZeigen(label); });
+        label.addEventListener("mouseleave", tippWeg);
+        cb.addEventListener("change", tippWeg);
+        label.addEventListener("mousedown", tippWeg);
+      });
+      window.addEventListener("scroll", tippWeg, { passive: true });
+    }
     popup.querySelector(".bildpopup__zu").addEventListener("click", schliessen);
     popup.querySelector(".bildpopup__ok").addEventListener("click", schliessen);
     popup.addEventListener("click", function (e) { if (e.target === popup) schliessen(); });
