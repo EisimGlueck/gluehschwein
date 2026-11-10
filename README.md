@@ -11,7 +11,7 @@ Keine Cookies, kein Tracking, Schrift selbst gehostet → kein Cookie-Banner nö
 | `impressum.html`, `datenschutz.html` | Rechtstexte (gelb markierte Platzhalter ausfüllen!) |
 | `css/style.css` | Design. Farben und Schriften ganz oben als Variablen |
 | `js/main.js` | Saison & Öffnungszeiten, Status „Heute geöffnet“, Formular, Karte |
-| `bilder/` | Favicon (Logo-Nachbau steckt als SVG direkt in den HTML-Seiten) |
+| `bilder/` | Logo, Skyline, Produktbilder, Slogan-Band (WebP) und Favicon |
 | `fonts/` | Schrift Inter (SIL Open Font License, siehe `fonts/OFL.txt`) |
 
 ## Was muss ich wo ändern?
@@ -43,7 +43,7 @@ Gelb hinterlegte Stellen (`class="platzhalter"`) sind noch offen.
 - [ ] Impressumsdaten Horst Dornberger
 - [ ] Reservierungs-E-Mail + Formspree-ID
 - [ ] Telefonnummer bestätigen
-- [ ] Logo-Originaldatei (bis dahin SVG-Nachbau)
+- [x] Logo eingebaut (als Sonne über der Skyline, in Kopf- und Fußzeile)
 - [ ] Fotos vom Hof
 - [ ] Was die Seite außerhalb der Saison zeigt
 - [ ] Datenschutz & Impressum rechtlich prüfen lassen

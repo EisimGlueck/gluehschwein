@@ -7,54 +7,19 @@
   <meta name="description" content="Datenschutzerklärung vom Glühschwein – Die gute Bude am Spielzeugmuseum, Nürnberg.">
   <meta name="robots" content="noindex, follow">
   <meta name="theme-color" content="#164f55">
-  <link rel="icon" href="bilder/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="bilder/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="bilder/apple-touch-icon.png">
   <link rel="preload" href="fonts/interdisplay-black.woff" as="font" type="font/woff" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
-
-<!-- ===================== Gemeinsame Grafiken (einmal definiert, mehrfach benutzt) ===================== -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    <clipPath id="logo-kreis"><circle cx="100" cy="100" r="92"/></clipPath>
-  </defs>
-  <!-- Logo: Nachbau als SVG, bis die Originaldatei da ist -->
-  <symbol id="logo" viewBox="0 0 200 200">
-    <path d="M3 100 A97 97 0 0 1 148.5 16" fill="none" stroke="#f2e600" stroke-width="8"/>
-    <g clip-path="url(#logo-kreis)">
-      <rect width="200" height="200" fill="#0b2f6b"/>
-      <polygon points="0,0 160,0 118,108 0,108" fill="#cfc81c"/>
-      <polygon points="168,8 200,48 200,200 112,200 88,114 118,108" fill="#1f6e68"/>
-      <path d="M126 96 L196 168 L160 200 L104 122 Z" fill="#000" opacity=".16"/>
-    </g>
-    <path d="M65 52 L58 24 L86 39 Z" fill="#ee8e8e"/>
-    <path d="M135 52 L142 24 L114 39 Z" fill="#ee8e8e"/>
-    <path d="M67 45 L63 30 L78 38 Z" fill="#c97474"/>
-    <path d="M133 45 L137 30 L122 38 Z" fill="#c97474"/>
-    <ellipse cx="100" cy="70" rx="40" ry="38" fill="#ee8e8e"/>
-    <circle cx="84" cy="62" r="5.5" fill="#1b1b1b"/>
-    <circle cx="116" cy="62" r="5.5" fill="#1b1b1b"/>
-    <ellipse cx="100" cy="83" rx="16" ry="12" fill="#f7cad3"/>
-    <circle cx="94.5" cy="83" r="2.6" fill="#1b1b1b"/>
-    <circle cx="105.5" cy="83" r="2.6" fill="#1b1b1b"/>
-    <rect x="90" y="106" width="20" height="5" rx="2" fill="#1f6e68"/>
-    <rect x="88" y="110" width="24" height="22" rx="4" fill="#c27a7a"/>
-    <path d="M88 116h24M88 121h24M88 126h24" stroke="#ee8e8e" stroke-width="2"/>
-    <path d="M94 132h12l-6 6z" fill="#c27a7a"/>
-    <g font-family="Inter Display, Inter, sans-serif" font-weight="900" font-style="italic" fill="#fff">
-      <text x="83" y="148" font-size="23" text-anchor="end">GLÜH</text>
-      <text x="117" y="148" font-size="23">WEIN</text>
-      <text x="100" y="164" font-size="13" text-anchor="middle">SCH</text>
-    </g>
-  </symbol>
-</svg>
 
 <a class="springen" href="#inhalt">Zum Inhalt springen</a>
 
 <header class="kopf">
   <div class="huelle kopf__innen">
     <a class="marke" href="index.html#home" aria-label="Glühschwein – zur Startseite">
-      <svg role="img" aria-label="Logo Glühschwein"><use href="#logo"/></svg>
+      <img class="marke__logo" src="bilder/logo-klein.webp" width="180" height="182" alt="Logo Glühschwein">
       <span class="marke__zeile">Die gute Bude<br>am Spielzeugmuseum</span>
     </a>
     <button class="burger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="hauptmenue">
@@ -114,7 +79,7 @@ E-Mail: <span class="platzhalter">E-Mail-Adresse folgt</span> · Telefon: <span 
 <footer class="fuss">
   <div class="huelle">
     <div class="fuss__raster">
-      <svg class="logo-fuss" role="img" aria-label="Logo Glühschwein"><use href="#logo"/></svg>
+      <img class="logo-fuss" src="bilder/logo-klein.webp" width="180" height="182" alt="Logo Glühschwein" loading="lazy">
       <div>
         <h4>Besuch</h4>
         <p>Glühschwein – Die gute Bude am Spielzeugmuseum<br>Karlstraße 13–15<br>90403 Nürnberg</p>
@@ -146,6 +111,6 @@ E-Mail: <span class="platzhalter">E-Mail-Adresse folgt</span> · Telefon: <span 
   </div>
 </footer>
 
-<script src="js/main.js?v=3" defer></script>
+<script src="js/main.js?v=4" defer></script>
 </body>
 </html>

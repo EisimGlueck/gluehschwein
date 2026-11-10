@@ -82,7 +82,7 @@ p { margin: 0 0 1em; }
 }
 .kopf__innen { display: flex; align-items: center; gap: 16px; min-height: 76px; }
 .marke { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--farbe-navy); }
-.marke svg { width: 60px; height: 60px; flex: none; }
+.marke__logo { width: 62px; height: auto; flex: none; }
 .marke__zeile {
   font-family: var(--schrift-ueberschrift); font-weight: 900; text-transform: uppercase;
   font-size: 13px; letter-spacing: .08em; line-height: 1.25;
@@ -110,7 +110,7 @@ p { margin: 0 0 1em; }
   .nav ul { flex-direction: column; gap: 0; padding: 8px 16px 16px; }
   .nav a { display: block; padding: 14px 0; border-bottom: 1px solid var(--rahmen); font-size: 16px; }
 }
-@media (max-width: 420px) { .marke svg { width: 52px; height: 52px; } .marke__zeile { display: none; } }
+@media (max-width: 420px) { .marke__logo { width: 54px; } .marke__zeile { display: none; } }
 
 /* ---------- Status-Leiste (heute geöffnet …) ---------- */
 .status { background: var(--farbe-navy); color: #fff; font-size: 14px; }
@@ -120,15 +120,36 @@ p { margin: 0 0 1em; }
 .status b { font-weight: 600; }
 
 /* ---------- Hero ---------- */
-.hero { position: relative; padding-top: 28px; padding-bottom: clamp(48px, 7vw, 80px); overflow-x: clip; }
-.hero__skyline { width: 100%; height: auto; position: relative; z-index: 0; }
+.hero {
+  --sonne: clamp(118px, 19vw, 250px);              /* Größe der Logo-Sonne */
+  position: relative; overflow: hidden;
+  padding-top: max(28px, calc(0.95 * var(--sonne) - 14.6vw + 22px));
+  padding-bottom: clamp(48px, 7vw, 80px);
+}
+/* Logo als untergehende Sonne im Tal zwischen Kirche und Burg */
+.himmel { position: relative; }
+.sonne {
+  position: absolute; z-index: 0;
+  width: var(--sonne); left: 52%;
+  top: calc(14.6vw - 0.95 * var(--sonne));        /* knapp hinter den Hügeln */
+  transform: translateX(-50%) rotate(-6deg);
+  filter: drop-shadow(0 0 22px rgba(246, 162, 60, .55));
+}
+.abendrot {
+  position: absolute; z-index: 0; pointer-events: none;
+  width: calc(var(--sonne) * 3.2); aspect-ratio: 1; left: 52%;
+  top: calc(14.6vw - 0.95 * var(--sonne) - var(--sonne) * 1.1);
+  transform: translateX(-50%); border-radius: 50%;
+  background: radial-gradient(circle, rgba(246,162,60,.42) 0%, rgba(243,196,67,.22) 34%, rgba(243,196,67,0) 66%);
+}
+.hero__skyline { width: 100%; height: auto; position: relative; z-index: 1; }
 .band {
   position: relative;
   background: var(--farbe-band);
   color: var(--hintergrund);
   transform: skewY(var(--schraege));
   margin: calc(-1 * clamp(22px, 4.5vw, 64px)) 0 0;
-  z-index: 1;
+  z-index: 2;
   padding: clamp(36px, 6vw, 64px) 0;
 }
 .band > * { transform: skewY(calc(var(--schraege) * -1)); }
@@ -346,7 +367,7 @@ p { margin: 0 0 1em; }
   clip-path: polygon(0 28px, 100% 0, 100% 100%, 0 100%);
 }
 .fuss__raster { display: grid; grid-template-columns: auto 1fr 1fr 1fr; gap: 28px 36px; align-items: start; padding-top: 16px; }
-.fuss svg.logo-fuss { width: 120px; height: 120px; }
+.fuss .logo-fuss { width: 130px; height: auto; }
 .fuss h4 { font-family: var(--schrift-ueberschrift); font-weight: 900; text-transform: uppercase; letter-spacing: .08em; font-size: 15px; margin: 0 0 10px; }
 .fuss p, .fuss li { font-size: 15px; margin: 0 0 6px; }
 .fuss ul { list-style: none; margin: 0; padding: 0; }
