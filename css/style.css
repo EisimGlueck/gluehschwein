@@ -410,3 +410,23 @@ p { margin: 0 0 1em; }
 .teilen__knopf--nativ { background: var(--farbe-primaer); color: #fff; }
 .teilen__knopf--nativ:hover { background: var(--farbe-primaer-dunkel); color: #fff; }
 .teilen__knopf[hidden] { display: none; }
+
+/* ---------- Bild-Popup (Jobs: „Wo möchtest du anpacken?“) ---------- */
+.tipp { margin: -2px 0 10px; }
+.bildpopup { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 16px;
+  background: rgba(11, 47, 107, .45); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); animation: popup-hg .2s ease; }
+.bildpopup[hidden] { display: none; }
+.bildpopup__karte { position: relative; width: min(560px, 100%); max-height: calc(100vh - 32px); overflow: auto;
+  background: #fff; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,.3);
+  animation: popup-rein .38s cubic-bezier(.2, 1.5, .4, 1); }
+.bildpopup__bild { width: 100%; height: auto; border-radius: 20px 20px 0 0; background: var(--hintergrund); }
+.bildpopup__text { padding: 18px 22px 22px; }
+.bildpopup__text h3 { font-size: 26px; text-transform: uppercase; color: var(--farbe-navy); margin: 0 0 6px; }
+.bildpopup__text p { color: var(--text-leise); margin: 0 0 16px; }
+.bildpopup__zu { position: absolute; top: 10px; right: 10px; width: 44px; height: 44px; border-radius: 50%; border: 0;
+  background: rgba(255,255,255,.92); color: var(--farbe-navy); font-size: 28px; line-height: 1; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.bildpopup__zu:hover { background: #fff; }
+@keyframes popup-rein { from { opacity: 0; transform: scale(.7) rotate(-3deg); } to { opacity: 1; transform: none; } }
+@keyframes popup-hg { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .bildpopup, .bildpopup__karte { animation: none; } }
+body.popup-offen { overflow: hidden; }

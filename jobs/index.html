@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#164f55">
   <link rel="icon" href="../bilder/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="../bilder/apple-touch-icon.png">
-  <link rel="stylesheet" href="../css/style.css?v=12">
+  <link rel="stylesheet" href="../css/style.css?v=13">
   <meta property="og:title" content="Jobs im Glühschwein – mach mit!">
   <meta property="og:description" content="Saisonjob im Advent: Ausschank, Küche, Auf- und Abbau im Innenhof vom Spielzeugmuseum Nürnberg. Ab 18 – jetzt online bewerben!">
   <meta property="og:type" content="website">
@@ -129,12 +129,13 @@
 
         <fieldset class="auswahl breit">
           <legend>Wo möchtest du am liebsten mit anpacken?</legend>
+          <p class="klein tipp">Tipp: Klick drauf – dann siehst du, wie's da so zugeht 😉</p>
           <div class="optionen">
-            <label class="option"><input type="checkbox" name="bereich" value="Ausschank / Theke"><span>Ausschank &amp; Theke</span></label>
-            <label class="option"><input type="checkbox" name="bereich" value="Küche / Weckla &amp; Suppe"><span>Küche: Weckla &amp; Suppe</span></label>
-            <label class="option"><input type="checkbox" name="bereich" value="Spüle / Aufräumen"><span>Spüle &amp; Aufräumen</span></label>
-            <label class="option"><input type="checkbox" name="bereich" value="Auf- und Abbau"><span>Auf- &amp; Abbau</span></label>
-            <label class="option"><input type="checkbox" name="bereich" value="Egal, überall"><span>Egal – überall</span></label>
+            <label class="option"><input type="checkbox" name="bereich" value="Ausschank / Theke" data-bild="ausschank"><span>Ausschank &amp; Theke</span></label>
+            <label class="option"><input type="checkbox" name="bereich" value="Küche / Weckla &amp; Suppe" data-bild="kueche"><span>Küche: Weckla &amp; Suppe</span></label>
+            <label class="option"><input type="checkbox" name="bereich" value="Spüle / Aufräumen" data-bild="spuele"><span>Spüle &amp; Aufräumen</span></label>
+            <label class="option"><input type="checkbox" name="bereich" value="Auf- und Abbau" data-bild="aufbau"><span>Auf- &amp; Abbau</span></label>
+            <label class="option"><input type="checkbox" name="bereich" value="Egal, überall" data-bild="team"><span>Egal – überall</span></label>
           </div>
         </fieldset>
 
@@ -230,6 +231,20 @@
 </section>
 </main>
 
+<!-- Bild-Popup für die Bereiche im Bewerbungsformular -->
+<div class="bildpopup" id="bildpopup" hidden>
+  <div class="bildpopup__karte" role="dialog" aria-modal="true" aria-labelledby="bildpopup-titel">
+    <button type="button" class="bildpopup__zu" aria-label="Schließen">×</button>
+    <img class="bildpopup__bild" alt="" width="960" height="720">
+    <div class="bildpopup__text">
+      <h3 id="bildpopup-titel"></h3>
+      <p></p>
+      <button type="button" class="knopf bildpopup__ok">Passt, weiter <span aria-hidden="true">→</span></button>
+    </div>
+  </div>
+</div>
+
+
 <footer class="fuss">
   <div class="huelle">
     <div class="fuss__raster">
@@ -266,6 +281,6 @@
   </div>
 </footer>
 
-<script src="../js/main.js?v=9" defer></script>
+<script src="../js/main.js?v=10" defer></script>
 </body>
 </html>

@@ -316,6 +316,56 @@
     });
   }
 
+  /* ---------- 4b+. BILD-POPUP bei „Wo möchtest du anpacken?“ ---------- */
+  var popup = document.getElementById("bildpopup");
+  if (popup && bform) {
+    var BEREICHE = {
+      ausschank: ["Ausschank & Theke", "Glühwein, Gin-Punsch und ein flotter Spruch über den Tresen – an der Theke bist du das Gesicht der Bude."],
+      kueche: ["Küche: Weckla & Suppe", "Suppe rühren, Schäufele zupfen, Leberkäs schneiden und Weckla belegen – hier wird's warm."],
+      spuele: ["Spüle & Aufräumen", "Ohne frische Tassen kein Glühwein! Unsere Spül-Profis sind die heimlichen Helden der Bude."],
+      aufbau: ["Auf- & Abbau", "Kisten schleppen, Brot und Tassen ranschaffen, Bude herrichten – und zum Feierabend alles wieder verstauen."],
+      team: ["Egal – überall", "Mal Theke, mal Küche, mal Spüle: Allrounder sind bei uns Gold wert."]
+    };
+    var basis = (document.querySelector('script[src*="main.js"]').getAttribute("src").indexOf("../") === 0) ? "../" : "";
+    var pBild = popup.querySelector(".bildpopup__bild");
+    var pTitel = popup.querySelector("h3");
+    var pText = popup.querySelector(".bildpopup__text p");
+    var zuletzt = null;
+    // Bilder im Hintergrund vorladen, sobald man beim Formular ist
+    var vorgeladen = false;
+    function vorladen() {
+      if (vorgeladen) return; vorgeladen = true;
+      Object.keys(BEREICHE).forEach(function (k) { var i = new Image(); i.src = basis + "bilder/jobs/" + k + ".webp"; });
+    }
+    if ("IntersectionObserver" in window) {
+      var gruppe = bform.querySelector("[data-bild]").closest(".auswahl");
+      new IntersectionObserver(function (e, o) { if (e[0].isIntersecting) { vorladen(); o.disconnect(); } }, { rootMargin: "400px" }).observe(gruppe);
+    }
+    function oeffnen(key, ausloeser) {
+      var b = BEREICHE[key]; if (!b) return;
+      zuletzt = ausloeser;
+      pBild.src = basis + "bilder/jobs/" + key + ".webp";
+      pBild.alt = "Illustration: " + b[0];
+      pTitel.textContent = b[0];
+      pText.textContent = b[1];
+      popup.hidden = false;
+      document.body.classList.add("popup-offen");
+      popup.querySelector(".bildpopup__ok").focus();
+    }
+    function schliessen() {
+      popup.hidden = true;
+      document.body.classList.remove("popup-offen");
+      if (zuletzt) zuletzt.focus();
+    }
+    bform.querySelectorAll("input[data-bild]").forEach(function (cb) {
+      cb.addEventListener("change", function () { if (cb.checked) oeffnen(cb.getAttribute("data-bild"), cb); });
+    });
+    popup.querySelector(".bildpopup__zu").addEventListener("click", schliessen);
+    popup.querySelector(".bildpopup__ok").addEventListener("click", schliessen);
+    popup.addEventListener("click", function (e) { if (e.target === popup) schliessen(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !popup.hidden) schliessen(); });
+  }
+
   /* ---------- 4c. TEILEN (Jobs-Seite) ----------
      Teilt immer die Adresse, unter der die Seite gerade aufgerufen wird
      (Vorschau auf github.io oder später dasglühschwein.de). */
