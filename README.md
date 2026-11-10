@@ -19,7 +19,7 @@ Keine Cookies, kein Tracking, Schrift selbst gehostet → kein Cookie-Banner nö
 
 - **Preise / Karte** → `index.html`, Abschnitte `id="getraenke"` und `id="speisen"`
 - **Öffnungszeiten** → an **zwei** Stellen:
-  1. `js/main.js`, ganz oben `SAISON` (steuert Status-Leiste und die Uhrzeiten im Formular)
+  1. `js/main.js`, ganz oben `SAISON` (steuert Status-Leiste, Fensterlicht, den Reservierungs-Kalender – Ruhetage und geschlossene Feiertage sind dort automatisch gesperrt – und die Uhrzeiten im Formular)
   2. `index.html`, Tabelle im Abschnitt `id="infos"`
 - **Formspree-ID** → `index.html`, im `<form action="https://formspree.io/f/DEINE-ID">`
 - **Formspree-ID Bewerbungen** → `jobs/index.html`, im `<form action="https://formspree.io/f/DEINE-JOBS-ID">` (am besten ein eigenes Formspree-Formular, damit Bewerbungen getrennt ankommen)

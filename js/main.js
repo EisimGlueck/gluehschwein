@@ -143,6 +143,72 @@
     datum.addEventListener("change", uhrzeitenFuellen);
     uhrzeitenFuellen();
 
+    /* ---- Eigener Kalender: nur Öffnungstage wählbar ---- */
+    var MONATE = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+    var WT = ["So","Mo","Di","Mi","Do","Fr","Sa"];
+    var kal = document.getElementById("kalender");
+    var kalKnopf = document.getElementById("f-datum-knopf");
+    var kalAnzeige = document.getElementById("f-datum-anzeige");
+    var datumText = document.getElementById("f-datum-text");
+    var ersterMonat = ausIso(datum.min); ersterMonat.setDate(1);
+    var letzterMonat = ausIso(datum.max); letzterMonat.setDate(1);
+    var ansicht = new Date(ersterMonat);
+
+    function waehlbar(d) {
+      var z = zeitenAm(d);
+      return d >= datum.min && d <= datum.max && z !== "ausserhalb" && z !== null;
+    }
+    function anzeigeSetzen() {
+      if (datum.value) {
+        var d = ausIso(datum.value);
+        var text = WT[d.getDay()] + ", " + deutsch(datum.value);
+        kalAnzeige.textContent = text; datumText.value = text; kalKnopf.classList.remove("leer");
+      } else {
+        kalAnzeige.textContent = "Tag wählen"; datumText.value = ""; kalKnopf.classList.add("leer");
+      }
+    }
+    function zeichnen() {
+      var j = ansicht.getFullYear(), m = ansicht.getMonth();
+      var h = '<div class="kal-kopf"><button type="button" class="kal-pfeil" data-schritt="-1" aria-label="Vorheriger Monat"' + (ansicht <= ersterMonat ? " disabled" : "") + '>‹</button>'
+            + '<b>' + MONATE[m] + ' ' + j + '</b>'
+            + '<button type="button" class="kal-pfeil" data-schritt="1" aria-label="Nächster Monat"' + (ansicht >= letzterMonat ? " disabled" : "") + '>›</button></div>'
+            + '<div class="kal-raster">';
+      ["Mo","Di","Mi","Do","Fr","Sa","So"].forEach(function (w) { h += '<span class="kal-wt" aria-hidden="true">' + w + '</span>'; });
+      var erster = new Date(j, m, 1), versatz = (erster.getDay() + 6) % 7;
+      for (var i = 0; i < versatz; i++) h += '<span class="kal-leer"></span>';
+      var tage = new Date(j, m + 1, 0).getDate(), heute = iso(new Date());
+      for (var t = 1; t <= tage; t++) {
+        var d = iso(new Date(j, m, t)), z = zeitenAm(d), ok = waehlbar(d);
+        var klasse = "kal-tag" + (z === null && d >= datum.min ? " zu" : "") + (ok && Object.prototype.hasOwnProperty.call(SAISON.sonder, d) ? " sonder" : "") + (d === heute ? " heute" : "");
+        var titel = ok ? (WT[new Date(j, m, t).getDay()] + " " + deutsch(d) + ", geöffnet " + z[0] + "–" + z[1] + " Uhr") : (z === null ? "geschlossen" : "nicht verfügbar");
+        h += '<button type="button" class="' + klasse + '" data-tag="' + d + '"' + (ok ? "" : " disabled") + ' aria-pressed="' + (d === datum.value) + '" aria-label="' + t + ". " + MONATE[m] + ", " + titel + '" title="' + titel + '">' + t + '</button>';
+      }
+      h += '</div><div class="kal-legende"><span><i style="background:#eef5f4"></i>geöffnet</span><span><i style="background:transparent;border:1px solid #d39a9c"></i>Ruhetag / zu</span><span><i style="background:var(--farbe-akzent);border-radius:50%"></i>nur bis 18 Uhr</span></div>';
+      kal.innerHTML = h;
+    }
+    function kalAuf() {
+      if (datum.value) { ansicht = ausIso(datum.value); ansicht.setDate(1); }
+      else { var start = ausIso(datum.min); start.setDate(1); ansicht = start; }
+      zeichnen(); kal.hidden = false; kalKnopf.setAttribute("aria-expanded", "true");
+      var ziel = kal.querySelector('.kal-tag[aria-pressed="true"]') || kal.querySelector(".kal-tag:not(:disabled)");
+      if (ziel) ziel.focus();
+    }
+    function kalZu(fokus) { kal.hidden = true; kalKnopf.setAttribute("aria-expanded", "false"); if (fokus) kalKnopf.focus(); }
+    kalKnopf.addEventListener("click", function () { kal.hidden ? kalAuf() : kalZu(); });
+    kal.addEventListener("click", function (e) {
+      e.stopPropagation(); // Klicks im Kalender schließen ihn nicht (Blättern baut den Inhalt neu)
+      var b = e.target.closest("button"); if (!b || b.disabled) return;
+      if (b.dataset.schritt) { ansicht.setMonth(ansicht.getMonth() + parseInt(b.dataset.schritt, 10)); zeichnen(); kal.querySelector('[data-schritt="' + b.dataset.schritt + '"]').focus(); return; }
+      if (b.dataset.tag) {
+        datum.value = b.dataset.tag; anzeigeSetzen(); kalZu(true);
+        datum.dispatchEvent(new Event("change", { bubbles: true }));
+        var box = kalKnopf.closest(".feld--fehler"); if (box) { box.classList.remove("feld--fehler"); var ft = box.querySelector(".fehlertext"); if (ft) ft.remove(); }
+      }
+    });
+    document.addEventListener("click", function (e) { if (!kal.hidden && !e.target.closest(".kalender-feld")) kalZu(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !kal.hidden) kalZu(true); });
+    anzeigeSetzen();
+
     // Firmenadresse ein-/ausblenden
     var firmaAn = form.querySelector("#f-firma-an");
     var firmaBox = form.querySelector("#firmen-felder");
@@ -214,7 +280,7 @@
       var ds = form.querySelector("#f-datenschutz");
       if (!ds.checked) f(ds, "Bitte der Datenschutzerklärung zustimmen.");
 
-      if (erstes) { erstes.focus(); return; }
+      if (erstes) { (erstes === datum ? kalKnopf : erstes).focus(); return; }
 
       if (form.action.indexOf("DEINE-ID") !== -1) {
         zeigen("info", "Das Formular ist noch nicht verbunden – die Formspree-ID fehlt noch. Bis dahin bitte telefonisch reservieren.");
@@ -228,6 +294,7 @@
         .then(function (r) {
           if (!r.ok) throw new Error("Fehler " + r.status);
           form.reset();
+          datum.value = ""; anzeigeSetzen();
           uhrzeitenFuellen();
           firmaUmschalten();
           zeigen("ok", "Danke! Deine Anfrage ist bei uns. Mir melden uns per E-Mail – erst dann ist der Tisch fest.");

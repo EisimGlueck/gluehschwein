@@ -9,7 +9,7 @@
   <link rel="icon" href="bilder/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="bilder/apple-touch-icon.png">
   <link rel="preload" href="fonts/interdisplay-black.woff" as="font" type="font/woff" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=15">
+  <link rel="stylesheet" href="css/style.css?v=16">
   <meta property="og:title" content="Glühschwein – Die gute Bude am Spielzeugmuseum">
   <meta property="og:description" content="Fränkisch. Ehrlich. Saufein. Hausgemachter Glühwein aus Frankenwein im Innenhof des Spielzeugmuseums Nürnberg.">
   <meta property="og:type" content="website">
@@ -214,8 +214,16 @@
 
         <div class="feld-raster">
           <div class="feld">
-            <label for="f-datum">Datum <span class="pflicht">*</span></label>
-            <input id="f-datum" name="datum" type="date" required min="2026-10-23" max="2027-01-09">
+            <label for="f-datum-knopf" id="f-datum-label">Datum <span class="pflicht">*</span></label>
+            <input id="f-datum" type="hidden" min="2026-10-23" max="2027-01-09">
+            <input id="f-datum-text" name="datum" type="hidden">
+            <div class="kalender-feld">
+              <button type="button" class="kalender-knopf" id="f-datum-knopf" aria-haspopup="dialog" aria-expanded="false" aria-controls="kalender">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                <span id="f-datum-anzeige">Tag wählen</span>
+              </button>
+              <div class="kalender" id="kalender" role="dialog" aria-label="Datum wählen" hidden></div>
+            </div>
             <div class="klein" id="f-datum-info">Saison: 23.10.2026 – 09.01.2027</div>
           </div>
           <div class="feld">
@@ -413,6 +421,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=12" defer></script>
+<script src="js/main.js?v=14" defer></script>
 </body>
 </html>
