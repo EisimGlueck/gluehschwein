@@ -9,6 +9,7 @@ Keine Cookies, kein Tracking, Schrift selbst gehostet → kein Cookie-Banner nö
 |---|---|
 | `index.html` | Die ganze Seite: Home · Getränke · Speisen · Reservierung · Infos |
 | `impressum.html`, `datenschutz.html` | Rechtstexte (gelb markierte Platzhalter ausfüllen!) |
+| `jobs/index.html` | Jobs-Seite mit Bewerbungsformular → erreichbar unter `/jobs` |
 | `css/style.css` | Design. Farben und Schriften ganz oben als Variablen |
 | `js/main.js` | Saison & Öffnungszeiten, Status „Heute geöffnet“, Fensterlicht im Titelbild, Formular, Karte |
 | `bilder/` | Logo, Skyline, Produktbilder, Slogan-Band (WebP) und Favicon |
@@ -21,6 +22,8 @@ Keine Cookies, kein Tracking, Schrift selbst gehostet → kein Cookie-Banner nö
   1. `js/main.js`, ganz oben `SAISON` (steuert Status-Leiste und die Uhrzeiten im Formular)
   2. `index.html`, Tabelle im Abschnitt `id="infos"`
 - **Formspree-ID** → `index.html`, im `<form action="https://formspree.io/f/DEINE-ID">`
+- **Formspree-ID Bewerbungen** → `jobs/index.html`, im `<form action="https://formspree.io/f/DEINE-JOBS-ID">` (am besten ein eigenes Formspree-Formular, damit Bewerbungen getrennt ankommen)
+- **Bezahlung für Aushilfen** → `jobs/index.html`, Punkt „Bezahlung“ (Platzhalter)
 - **E-Mail, Telefon** → Fußzeile in `index.html`, `impressum.html`, `datenschutz.html`
 
 **Fensterlicht:** `bilder/fenster-an.webp` (leuchtende Fenster) liegt über `bilder/einstieg.webp` und wird nur während der Öffnungszeit eingeblendet – das entscheidet `js/main.js`. Geschlossen ist das Originalbild mit weißen Fenstern zu sehen. Wird das Einstiegsbild ausgetauscht, muss die Fenster-Ebene neu erzeugt werden.
@@ -44,6 +47,7 @@ Gelb hinterlegte Stellen (`class="platzhalter"`) sind noch offen.
 
 - [ ] Impressumsdaten Horst Dornberger
 - [ ] Reservierungs-E-Mail + Formspree-ID
+- [ ] Formspree-Formular für Bewerbungen + Angaben zur Bezahlung auf der Jobs-Seite
 - [ ] Telefonnummer bestätigen
 - [x] Logo eingebaut (als Sonne über der Skyline, in Kopf- und Fußzeile)
 - [ ] Fotos vom Hof

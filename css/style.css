@@ -314,6 +314,19 @@ p { margin: 0 0 1em; }
 .honig { position: absolute !important; left: -5000px !important; }
 .firmen-felder { grid-column: 1 / -1; margin: 0; padding: 18px 18px 20px; border: 2px dashed var(--rahmen); border-radius: 12px; background: #f6faf9; min-width: 0; }
 .firmen-felder[hidden] { display: none; }
+/* Auswahl-Gruppen (Bewerbungsformular) */
+.auswahl { grid-column: 1 / -1; border: 0; margin: 0; padding: 0; min-width: 0; }
+.auswahl legend { font-weight: 600; font-size: 15px; color: var(--farbe-navy); margin-bottom: 8px; padding: 0; }
+.optionen { display: flex; flex-wrap: wrap; gap: 8px; }
+.option { position: relative; display: inline-flex; cursor: pointer; }
+.option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.option span { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; border: 2px solid var(--rahmen); border-radius: 999px; background: #fff; font-size: 15px; color: var(--text); transition: background .15s, border-color .15s, color .15s; }
+.option:hover span { border-color: var(--farbe-primaer); }
+.option input:checked + span { background: var(--farbe-primaer); border-color: var(--farbe-primaer); color: #fff; font-weight: 600; }
+.option input:focus-visible + span { outline: 3px solid var(--farbe-akzent); outline-offset: 2px; }
+.optionen--tage .option span { min-width: 54px; justify-content: center; }
+.auswahl--fehler .option span, .auswahl--fehler .haekchen input { border-color: var(--farbe-akzent); outline: 2px solid var(--farbe-akzent); outline-offset: 1px; }
+.feld[hidden] { display: none; }
 .firmen-felder legend { padding: 0 8px; font-family: var(--schrift-ueberschrift); font-weight: 900; text-transform: uppercase; letter-spacing: .05em; font-size: 14px; color: var(--farbe-primaer); }
 .formular-fuss { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; margin-top: 22px; }
 .formular-fuss p { margin: 0; font-size: 14px; color: var(--text-leise); flex: 1 1 220px; }

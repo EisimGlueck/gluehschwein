@@ -168,6 +168,14 @@
       form.querySelectorAll(".feld--fehler").forEach(function (b) { b.classList.remove("feld--fehler"); });
       form.querySelectorAll(".fehlertext").forEach(function (t) { t.remove(); });
     }
+    function fehlerWegRes(e) {
+      var box = e.target.closest(".feld--fehler");
+      if (!box) return;
+      box.classList.remove("feld--fehler");
+      var t = box.querySelector(".fehlertext"); if (t) t.remove();
+    }
+    form.addEventListener("change", fehlerWegRes);
+    form.addEventListener("input", fehlerWegRes);
     function zeigen(art, text) { meldung.className = "meldung meldung--" + art; meldung.textContent = text; }
 
     form.addEventListener("submit", function (e) {
@@ -227,6 +235,83 @@
         .catch(function () {
           zeigen("fehler", "Hoppla, das hat nicht geklappt. Bitte probier's nochmal oder ruf uns an.");
         })
+        .then(function () { knopf.disabled = false; });
+    });
+  }
+
+  /* ---------- 4b. BEWERBUNGSFORMULAR (jobs/) ---------- */
+  var bform = document.getElementById("bewerbungs-formular");
+  if (bform) {
+    var bMeldung = document.getElementById("bewerbung-meldung");
+    var details = document.getElementById("erfahrung-details");
+    var detailsFeld = document.getElementById("b-erfahrung");
+    function erfahrungUmschalten() {
+      var gewaehlt = bform.querySelector("input[name=gastro_erfahrung]:checked");
+      var zeigen = !!gewaehlt && gewaehlt.value !== "Nein, aber ich lerne schnell";
+      details.hidden = !zeigen;
+      detailsFeld.disabled = !zeigen;
+    }
+    bform.querySelectorAll("input[name=gastro_erfahrung]").forEach(function (r) { r.addEventListener("change", erfahrungUmschalten); });
+    erfahrungUmschalten();
+
+    // Fehlermarkierung verschwindet, sobald man das Feld korrigiert
+    function fehlerWegBei(e) {
+      var box = e.target.closest(".feld--fehler, .auswahl--fehler");
+      if (!box) return;
+      box.classList.remove("feld--fehler", "auswahl--fehler");
+      var t = box.querySelector(".fehlertext"); if (t) t.remove();
+    }
+    bform.addEventListener("change", fehlerWegBei);
+    bform.addEventListener("input", fehlerWegBei);
+
+    function bZeigen(art, text) { bMeldung.className = "meldung meldung--" + art; bMeldung.textContent = text; }
+    function bFehler(el, text) {
+      var box = el.closest(".feld") || el.closest(".auswahl");
+      box.classList.add(box.classList.contains("auswahl") ? "auswahl--fehler" : "feld--fehler");
+      var t = document.createElement("div"); t.className = "fehlertext"; t.textContent = text; box.appendChild(t);
+    }
+
+    bform.addEventListener("submit", function (e) {
+      e.preventDefault();
+      bform.querySelectorAll(".feld--fehler,.auswahl--fehler").forEach(function (b) { b.classList.remove("feld--fehler", "auswahl--fehler"); });
+      bform.querySelectorAll(".fehlertext").forEach(function (t) { t.remove(); });
+      bMeldung.className = ""; bMeldung.textContent = "";
+      var erstes = null;
+      function f(el, text) { bFehler(el, text); if (!erstes) erstes = el; }
+      var q = function (sel) { return bform.querySelector(sel); };
+      if (!q("#b-vorname").value.trim()) f(q("#b-vorname"), "Bitte deinen Vornamen angeben.");
+      if (!q("#b-nachname").value.trim()) f(q("#b-nachname"), "Bitte deinen Nachnamen angeben.");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(q("#b-email").value.trim())) f(q("#b-email"), "Bitte eine gültige E-Mail-Adresse angeben.");
+      if (q("#b-telefon").value.replace(/[^0-9]/g, "").length < 6) f(q("#b-telefon"), "Bitte eine Telefonnummer angeben.");
+      if (!q("#b-wohnort").value.trim()) f(q("#b-wohnort"), "Bitte deinen Wohnort angeben.");
+      if (!q("#b-18").checked) f(q("#b-18"), "Bei uns kannst du erst ab 18 Jahren arbeiten.");
+      if (!q("input[name=gastro_erfahrung]:checked")) f(q("input[name=gastro_erfahrung]"), "Bitte eine Antwort wählen.");
+      if (!q("#b-art").value) f(q("#b-art"), "Bitte auswählen.");
+      if (!q("input[name=tage]:checked")) f(q("input[name=tage]"), "Bitte mindestens einen Tag wählen.");
+      if (!q("#b-datenschutz").checked) f(q("#b-datenschutz"), "Bitte der Datenschutzerklärung zustimmen.");
+      if (erstes) { erstes.focus(); return; }
+
+      if (bform.action.indexOf("DEINE-JOBS-ID") !== -1) {
+        bZeigen("info", "Das Bewerbungsformular ist noch nicht verbunden – die Formspree-ID fehlt noch. Ruf uns bis dahin gern an.");
+        return;
+      }
+      // Mehrfachauswahl (Tage, Bereiche, Extras) zu einer Zeile zusammenfassen
+      var daten = new FormData(bform);
+      ["tage", "bereich", "extras"].forEach(function (name) {
+        var werte = daten.getAll(name);
+        daten.delete(name);
+        if (werte.length) daten.append(name, werte.join(", "));
+      });
+      var knopf = bform.querySelector("button[type=submit]");
+      knopf.disabled = true;
+      bZeigen("info", "Wird gesendet …");
+      fetch(bform.action, { method: "POST", body: daten, headers: { "Accept": "application/json" } })
+        .then(function (r) {
+          if (!r.ok) throw new Error("Fehler " + r.status);
+          bform.reset(); erfahrungUmschalten();
+          bZeigen("ok", "Danke für deine Bewerbung! Mir melden uns bald bei dir.");
+        })
+        .catch(function () { bZeigen("fehler", "Hoppla, das hat nicht geklappt. Bitte probier's nochmal oder ruf uns an."); })
         .then(function () { knopf.disabled = false; });
     });
   }
