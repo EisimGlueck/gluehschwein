@@ -133,6 +133,20 @@
     datum.addEventListener("change", uhrzeitenFuellen);
     uhrzeitenFuellen();
 
+    // Firmenadresse ein-/ausblenden
+    var firmaAn = form.querySelector("#f-firma-an");
+    var firmaBox = form.querySelector("#firmen-felder");
+    var zahlung = form.querySelector("#f-zahlung");
+    function firmaUmschalten() {
+      var an = firmaAn.checked;
+      firmaBox.hidden = !an;
+      firmaAn.setAttribute("aria-expanded", String(an));
+      firmaBox.querySelectorAll("input").forEach(function (i) { i.disabled = !an; });
+      if (an && zahlung) zahlung.value = "Rechnung / Überweisung (nach Rücksprache)";
+    }
+    firmaAn.addEventListener("change", firmaUmschalten);
+    firmaUmschalten();
+
     function fehler(feld, text) {
       var box = feld.closest(".feld");
       box.classList.add("feld--fehler");
@@ -166,6 +180,19 @@
       if (!name.value.trim()) f(name, "Bitte deinen Namen angeben.");
       var mail = form.querySelector("#f-email");
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail.value.trim())) f(mail, "Bitte eine gültige E-Mail-Adresse angeben.");
+      var tel = form.querySelector("#f-telefon");
+      if (tel.value.replace(/[^0-9]/g, "").length < 6) f(tel, "Bitte eine Telefonnummer angeben.");
+      if (firmaAn.checked) {
+        [["#f-firma", "Bitte den Firmennamen angeben."],
+         ["#f-firma-strasse", "Bitte Straße und Hausnummer angeben."],
+         ["#f-firma-plz", "Bitte die PLZ angeben."],
+         ["#f-firma-ort", "Bitte den Ort angeben."]].forEach(function (x) {
+          var el = form.querySelector(x[0]);
+          if (!el.value.trim()) f(el, x[1]);
+        });
+        var rm = form.querySelector("#f-firma-mail");
+        if (rm.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rm.value.trim())) f(rm, "Bitte eine gültige E-Mail-Adresse angeben.");
+      }
       var ds = form.querySelector("#f-datenschutz");
       if (!ds.checked) f(ds, "Bitte der Datenschutzerklärung zustimmen.");
 
@@ -184,6 +211,7 @@
           if (!r.ok) throw new Error("Fehler " + r.status);
           form.reset();
           uhrzeitenFuellen();
+          firmaUmschalten();
           zeigen("ok", "Danke! Deine Anfrage ist bei uns. Mir melden uns per E-Mail – erst dann ist der Tisch fest.");
         })
         .catch(function () {

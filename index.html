@@ -9,7 +9,7 @@
   <link rel="icon" href="bilder/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="bilder/apple-touch-icon.png">
   <link rel="preload" href="fonts/interdisplay-black.woff" as="font" type="font/woff" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=7">
+  <link rel="stylesheet" href="css/style.css?v=8">
   <meta property="og:title" content="Glühschwein – Die gute Bude am Spielzeugmuseum">
   <meta property="og:description" content="Fränkisch. Ehrlich. Saufein. Hausgemachter Glühwein aus Frankenwein im Innenhof des Spielzeugmuseums Nürnberg.">
   <meta property="og:type" content="website">
@@ -230,9 +230,9 @@
             <input id="f-email" name="email" type="email" autocomplete="email" required>
           </div>
           <div class="feld">
-            <label for="f-telefon">Telefon</label>
-            <input id="f-telefon" name="telefon" type="tel" autocomplete="tel">
-            <div class="klein">Falls mir kurz Rückfragen haben</div>
+            <label for="f-telefon">Telefon <span class="pflicht">*</span></label>
+            <input id="f-telefon" name="telefon" type="tel" autocomplete="tel" inputmode="tel" required>
+            <div class="klein">Für kurze Rückfragen zur Reservierung</div>
           </div>
           <div class="feld breit">
             <label for="f-zahlung">Bezahlung</label>
@@ -242,6 +242,48 @@
             </select>
             <div class="klein">Rechnung klären mir mit dir per E-Mail oder Telefon.</div>
           </div>
+          <div class="feld breit">
+            <label class="haekchen" for="f-firma-an">
+              <input id="f-firma-an" type="checkbox" aria-controls="firmen-felder" aria-expanded="false">
+              <span>Wir kommen als <b>Firma</b> – Rechnung bitte an die Firmenadresse</span>
+            </label>
+          </div>
+          <fieldset class="firmen-felder breit" id="firmen-felder" hidden>
+            <legend>Rechnungsadresse Firma</legend>
+            <div class="feld-raster">
+              <div class="feld breit">
+                <label for="f-firma">Firmenname <span class="pflicht">*</span></label>
+                <input id="f-firma" name="firma" type="text" autocomplete="organization" disabled>
+              </div>
+              <div class="feld breit">
+                <label for="f-firma-strasse">Straße und Hausnummer <span class="pflicht">*</span></label>
+                <input id="f-firma-strasse" name="firma_strasse" type="text" autocomplete="street-address" disabled>
+              </div>
+              <div class="feld">
+                <label for="f-firma-plz">PLZ <span class="pflicht">*</span></label>
+                <input id="f-firma-plz" name="firma_plz" type="text" inputmode="numeric" autocomplete="postal-code" disabled>
+              </div>
+              <div class="feld">
+                <label for="f-firma-ort">Ort <span class="pflicht">*</span></label>
+                <input id="f-firma-ort" name="firma_ort" type="text" autocomplete="address-level2" disabled>
+              </div>
+              <div class="feld">
+                <label for="f-firma-ansprech">Ansprechpartner/in</label>
+                <input id="f-firma-ansprech" name="firma_ansprechpartner" type="text" disabled>
+                <div class="klein">Falls nicht du selbst</div>
+              </div>
+              <div class="feld">
+                <label for="f-firma-ref">Bestellnr. / Kostenstelle</label>
+                <input id="f-firma-ref" name="firma_referenz" type="text" disabled>
+                <div class="klein">Falls eure Buchhaltung das braucht</div>
+              </div>
+              <div class="feld breit">
+                <label for="f-firma-mail">E-Mail für die Rechnung</label>
+                <input id="f-firma-mail" name="firma_rechnungs_email" type="email" autocomplete="email" disabled>
+                <div class="klein">Leer lassen, wenn die Rechnung an deine E-Mail oben gehen soll</div>
+              </div>
+            </div>
+          </fieldset>
           <div class="feld breit">
             <label for="f-nachricht">Nachricht</label>
             <textarea id="f-nachricht" name="nachricht" placeholder="z. B. Weihnachtsfeier vom Büro, mir bringen einen Hund mit …"></textarea>
@@ -363,6 +405,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=4" defer></script>
+<script src="js/main.js?v=5" defer></script>
 </body>
 </html>
