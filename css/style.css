@@ -18,7 +18,7 @@
   --farbe-band:           #044c66;  /* Band unter der Skyline (= Unterkante der Grafik) */
   --farbe-navy:           #0b2f6b;  /* Navy – Text, Rahmen */
   --farbe-gelb:           #f3c443;  /* Gelb – Sonne, Semmel */
-  --farbe-logo-gelb:      #cfc81c;  /* Gelb im Logo */
+  --farbe-logo-gelb:      #fcc802;  /* Gelb aus dem Logo – Überschriften auf der Karte */
   --farbe-rosa:           #ee8e8e;  /* Schweinchen-Rosa */
   --farbe-rosa-hell:      #f7cad3;
   --farbe-akzent:         #e2676b;  /* Koralle – Button */
@@ -230,7 +230,7 @@ p { margin: 0 0 1em; }
 .karten-raster { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 28px 40px; margin-top: 36px; }
 .karten-gruppe h3 {
   font-family: var(--schrift-ueberschrift); font-weight: 900; font-style: italic; text-transform: uppercase;
-  font-size: 24px; letter-spacing: .03em; margin: 0 0 10px; color: #fff;
+  font-size: 24px; letter-spacing: .03em; margin: 0 0 10px; color: var(--farbe-logo-gelb);
 }
 .karten-gruppe h3 small { font-size: 12px; letter-spacing: .1em; vertical-align: super; margin-left: 4px; }
 .karte-liste { list-style: none; margin: 0; padding: 0; }
@@ -255,7 +255,7 @@ p { margin: 0 0 1em; }
 }
 .preis-kreis sup { font-size: .5em; vertical-align: .75em; }
 .preis-kreis small { font-size: 14px; font-weight: 900; margin-top: 6px; display: block; }
-.top-gluehwein h3 { font-size: clamp(26px, 4vw, 38px); text-transform: uppercase; margin: 0 0 6px; }
+.top-gluehwein h3 { font-size: clamp(26px, 4vw, 38px); text-transform: uppercase; margin: 0 0 6px; color: var(--farbe-logo-gelb); }
 .top-gluehwein h3 sup { font-size: .45em; vertical-align: .9em; text-transform: lowercase; }
 .top-gluehwein p { margin: 0; color: rgba(255,255,255,.85); }
 .fahne { display: inline-block; margin-top: 10px; background: #fff; color: var(--farbe-rot); font-weight: 600; font-size: 14px; padding: 4px 10px; border-radius: 4px; transform: rotate(-2deg); }
