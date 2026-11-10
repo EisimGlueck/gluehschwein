@@ -393,3 +393,20 @@ p { margin: 0 0 1em; }
   .highlight img { width: min(240px, 100%); }
   .cta-zeile { justify-content: center; text-align: center; }
 }
+
+/* ---------- Teilen (Jobs-Seite) ---------- */
+.teilen { margin-top: 32px; padding: 20px; background: var(--farbe-rosa-hell); border-radius: var(--radius); }
+.teilen__titel { margin: 0 0 12px; color: var(--farbe-navy); }
+.teilen__knoepfe { display: flex; flex-wrap: wrap; gap: 10px; }
+.teilen__knopf {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 16px;
+  border: 0; border-radius: 999px; background: #fff; color: var(--farbe-navy); cursor: pointer;
+  font: 600 15px/1 var(--schrift-text); text-decoration: none; box-shadow: 0 2px 0 rgba(11,47,107,.12);
+}
+.teilen__knopf:hover { background: var(--hintergrund); color: var(--farbe-navy); }
+.teilen__knopf svg { width: 20px; height: 20px; flex: none; }
+.teilen__knopf--wa { background: #25d366; color: #fff; }
+.teilen__knopf--wa:hover { background: #1fb457; color: #fff; }
+.teilen__knopf--nativ { background: var(--farbe-primaer); color: #fff; }
+.teilen__knopf--nativ:hover { background: var(--farbe-primaer-dunkel); color: #fff; }
+.teilen__knopf[hidden] { display: none; }

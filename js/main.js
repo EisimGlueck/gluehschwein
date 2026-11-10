@@ -316,6 +316,35 @@
     });
   }
 
+  /* ---------- 4c. TEILEN (Jobs-Seite) ----------
+     Teilt immer die Adresse, unter der die Seite gerade aufgerufen wird
+     (Vorschau auf github.io oder später dasglühschwein.de). */
+  var teilen = document.getElementById("teilen");
+  if (teilen) {
+    var url = location.origin + location.pathname.replace(/index\.html$/, "");
+    var titel = "Saisonjob im Glühschwein Nürnberg";
+    var text = "Das Glühschwein am Spielzeugmuseum sucht Leute für die Saison – hier bewerben:";
+    var wa = document.getElementById("teilen-wa");
+    var mail = document.getElementById("teilen-mail");
+    wa.href = "https://wa.me/?text=" + encodeURIComponent(text + " " + url);
+    mail.href = "mailto:?subject=" + encodeURIComponent(titel) + "&body=" + encodeURIComponent(text + " " + url);
+    var nativ = document.getElementById("teilen-nativ");
+    if (navigator.share) {
+      nativ.hidden = false;
+      nativ.addEventListener("click", function () {
+        navigator.share({ title: titel, text: text, url: url }).catch(function () {});
+      });
+    }
+    var kopieren = document.getElementById("teilen-kopieren");
+    kopieren.addEventListener("click", function () {
+      var label = kopieren.querySelector("span");
+      function fertig() { label.textContent = "Link kopiert ✓"; setTimeout(function () { label.textContent = "Link kopieren"; }, 2500); }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(fertig, function () { window.prompt("Link zum Kopieren:", url); });
+      } else { window.prompt("Link zum Kopieren:", url); }
+    });
+  }
+
   /* ---------- 5. KARTE (2-Klick-Lösung) ---------- */
   var karteKnopf = document.getElementById("karte-laden");
   if (karteKnopf) {
