@@ -10,7 +10,7 @@ Keine Cookies, kein Tracking, Schrift selbst gehostet → kein Cookie-Banner nö
 | `index.html` | Die ganze Seite: Home · Getränke · Speisen · Reservierung · Infos |
 | `impressum.html`, `datenschutz.html` | Rechtstexte (gelb markierte Platzhalter ausfüllen!) |
 | `css/style.css` | Design. Farben und Schriften ganz oben als Variablen |
-| `js/main.js` | Saison & Öffnungszeiten, Status „Heute geöffnet“, Formular, Karte |
+| `js/main.js` | Saison & Öffnungszeiten, Status „Heute geöffnet“, Fensterlicht im Titelbild, Formular, Karte |
 | `bilder/` | Logo, Skyline, Produktbilder, Slogan-Band (WebP) und Favicon |
 | `fonts/` | Schrift Inter (SIL Open Font License, siehe `fonts/OFL.txt`) |
 
@@ -22,6 +22,8 @@ Keine Cookies, kein Tracking, Schrift selbst gehostet → kein Cookie-Banner nö
   2. `index.html`, Tabelle im Abschnitt `id="infos"`
 - **Formspree-ID** → `index.html`, im `<form action="https://formspree.io/f/DEINE-ID">`
 - **E-Mail, Telefon** → Fußzeile in `index.html`, `impressum.html`, `datenschutz.html`
+
+**Fensterlicht:** `bilder/fenster-an.webp` (leuchtend) und `bilder/fenster-aus.webp` (dunkel) liegen über `bilder/einstieg.webp`. Welche Ebene sichtbar ist, entscheidet `js/main.js` anhand der Öffnungszeiten. Wird das Einstiegsbild ausgetauscht, müssen die beiden Fenster-Ebenen neu erzeugt werden.
 
 Gelb hinterlegte Stellen (`class="platzhalter"`) sind noch offen.
 

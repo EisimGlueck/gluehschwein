@@ -46,27 +46,37 @@
     return SAISON.zeiten[tag];
   }
 
-  /* ---------- 2. STATUS-LEISTE ---------- */
+  /* ---------- 2. STATUS-LEISTE & FENSTERLICHT ----------
+     Offen  → grüner Punkt, Fenster im Titelbild leuchten (Klasse „ist-offen“)
+     Zu     → rosa Punkt, Fenster dunkel (Klasse „ist-zu“)
+     Wird jede Minute neu geprüft, damit es um 14 bzw. 22 Uhr von selbst umschaltet. */
   var statusBox = document.getElementById("status");
   var statusText = document.getElementById("status-text");
-  if (statusBox && statusText) {
-    var heute = iso(new Date());
+  function statusAktualisieren() {
+    var jetztDatum = new Date();
+    var heute = iso(jetztDatum);
     var z = zeitenAm(heute);
+    var offen = false, text;
     if (z === "ausserhalb") {
-      statusBox.classList.add("status--zu");
-      statusText.textContent = heute < SAISON.start
+      text = heute < SAISON.start
         ? "Saisonstart am " + deutsch(SAISON.start) + " – mir freuen uns!"
         : "Die Saison ist vorbei – danke fürs Kommen!";
     } else if (z === null) {
-      statusBox.classList.add("status--zu");
-      statusText.textContent = "Heute geschlossen · Saison bis " + deutsch(SAISON.ende);
+      text = "Heute geschlossen · Saison bis " + deutsch(SAISON.ende);
     } else {
-      var jetzt = new Date().getHours() + new Date().getMinutes() / 60;
-      var offen = jetzt >= z[0] && jetzt < z[1];
-      if (!offen) statusBox.classList.add("status--zu");
-      statusText.textContent = (offen ? "Jetzt geöffnet" : "Heute geöffnet") + ": " + z[0] + " – " + z[1] + " Uhr";
+      var jetzt = jetztDatum.getHours() + jetztDatum.getMinutes() / 60;
+      offen = jetzt >= z[0] && jetzt < z[1];
+      text = (offen ? "Jetzt geöffnet" : "Heute geöffnet") + ": " + z[0] + " – " + z[1] + " Uhr";
+    }
+    document.documentElement.classList.toggle("ist-offen", offen);
+    document.documentElement.classList.toggle("ist-zu", !offen);
+    if (statusBox && statusText) {
+      statusBox.classList.toggle("status--zu", !offen);
+      statusText.textContent = text;
     }
   }
+  statusAktualisieren();
+  setInterval(statusAktualisieren, 60000);
 
   /* ---------- 3. MENÜ ---------- */
   var burger = document.querySelector(".burger");
