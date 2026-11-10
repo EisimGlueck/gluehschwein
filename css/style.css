@@ -180,7 +180,7 @@ p { margin: 0 0 1em; }
 .bissen { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); }
 .bissen li { text-align: center; padding: 0 14px; }
 .bissen li + li { border-left: 2px solid var(--farbe-navy); }
-.bissen img { width: 100%; height: clamp(150px, 19vw, 230px); object-fit: contain; object-position: center bottom; margin: 0 auto; }
+.bissen img { width: auto; max-width: 100%; height: clamp(140px, 19vw, 230px); object-fit: contain; object-position: center bottom; margin: 0 auto; }
 .bissen span { font-family: var(--schrift-ueberschrift); font-weight: 900; text-transform: uppercase; color: var(--farbe-navy); font-size: clamp(14px, 2vw, 20px); letter-spacing: .05em; line-height: 1.15; display: block; }
 @media (max-width: 640px) {
   .bissen { grid-template-columns: 1fr 1fr; row-gap: 28px; }
