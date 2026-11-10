@@ -78,43 +78,14 @@
 
 <!-- Status: wird per Script mit den heutigen Öffnungszeiten gefüllt -->
 <div class="status" id="status" aria-live="polite">
-  <div class="huelle"><span><span class="status__punkt"></span><b id="status-text">Saison 2026/27: 23.10.2026 – 09.01.2027</b></span><span id="status-zusatz">Im Innenhof vom Spielzeugmuseum · nur Barzahlung</span></div>
+  <div class="huelle"><span><span class="status__punkt"></span><b id="status-text">Saison 2026/27: 23.10.2026 – 09.01.2027</b></span><span id="status-zusatz">Im Innenhof vom Spielzeugmuseum · Barzahlung, Gruppen auch auf Rechnung</span></div>
 </div>
 
 <main id="inhalt">
 
   <!-- ===================== HOME ===================== -->
   <section class="hero" id="home" aria-labelledby="hero-titel">
-    <svg class="hero__skyline" viewBox="0 0 1200 220" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Nürnberger Altstadt-Silhouette mit Kirche und Burg">
-      <path d="M0 150 C150 92 300 122 420 112 C560 100 640 62 800 92 C930 114 1050 72 1200 102 L1200 220 L0 220Z" fill="#7fb3ae"/>
-      <g transform="translate(170 0)">
-      <!-- Kirche -->
-      <g fill="#164f55">
-        <rect x="196" y="70" width="28" height="90"/>
-        <path d="M194 72 L210 18 L226 72Z"/>
-        <rect x="209" y="4" width="2" height="16"/><rect x="204" y="9" width="12" height="2"/>
-      </g>
-      <rect x="205" y="92" width="10" height="16" rx="5" fill="#7fb3ae"/>
-      <!-- Haus -->
-      <rect x="240" y="110" width="66" height="50" fill="#164f55"/>
-      <path d="M234 112 L273 84 L312 112Z" fill="#164f55"/>
-      <g fill="#fbf5ec"><rect x="250" y="122" width="8" height="10"/><rect x="266" y="122" width="8" height="10"/><rect x="282" y="122" width="8" height="10"/><rect x="250" y="140" width="8" height="10"/><rect x="282" y="140" width="8" height="10"/></g>
-      </g>
-      <g transform="translate(-170 0)">
-      <!-- Burg -->
-      <g fill="#164f55">
-        <path d="M850 160 V104 h10 v-10 h12 v10 h12 v-10 h12 v10 h12 v-10 h12 v10 h12 v-10 h12 v10 h10 V160Z"/>
-        <path d="M956 160 V48 h8 v-12 h10 v12 h8 v-12 h10 v12 h8 v-12 h10 v12 h4 V160Z"/>
-        <rect x="984" y="2" width="3" height="34"/>
-        <path d="M987 4 L1010 10 L987 17Z"/>
-      </g>
-      <g fill="#fbf5ec"><rect x="972" y="70" width="8" height="14" rx="4"/><rect x="996" y="70" width="8" height="14" rx="4"/></g>
-      <!-- Bäume -->
-      <g fill="#164f55"><circle cx="1036" cy="138" r="20"/><circle cx="1062" cy="128" r="24"/><circle cx="1090" cy="140" r="18"/></g>
-      </g>
-      <path d="M0 176 C180 132 360 160 560 150 C760 138 900 166 1060 148 C1120 142 1170 146 1200 150 L1200 220 L0 220Z" fill="#2f7c76"/>
-      <path d="M0 205 C220 170 420 196 640 184 C840 172 1000 196 1200 182 L1200 220 L0 220Z" fill="#1f6e68"/>
-    </svg>
+    <img class="hero__skyline" src="bilder/skyline.webp" width="2000" height="505" alt="Verschneite Nürnberger Altstadt-Silhouette mit Kirche und Burg" fetchpriority="high">
 
     <div class="band">
       <h1 class="band__titel" id="hero-titel">Glühwein</h1>
@@ -126,44 +97,11 @@
 
       <div class="highlights">
         <div class="highlight">
-          <svg viewBox="0 0 260 220" aria-hidden="true">
-            <defs><clipPath id="tasse-sonne"><rect x="0" y="0" width="260" height="190"/></clipPath></defs>
-            <circle cx="130" cy="122" r="96" fill="#f3c443" clip-path="url(#tasse-sonne)"/>
-            <g fill="none" stroke="#1f6e68" stroke-width="7" stroke-linecap="round">
-              <path d="M100 58 c-10 -12 10 -20 0 -34 c-6 -8 0 -14 4 -18"/>
-              <path d="M128 58 c-10 -12 10 -20 0 -34 c-6 -8 0 -14 4 -18"/>
-              <path d="M156 58 c-10 -12 10 -20 0 -34 c-6 -8 0 -14 4 -18"/>
-            </g>
-            <path d="M190 102 h14 a26 26 0 0 1 0 52 h-14" fill="none" stroke="#a3303a" stroke-width="14"/>
-            <path d="M64 78 h132 v84 a28 28 0 0 1 -28 28 h-76 a28 28 0 0 1 -28 -28z" fill="#a3303a"/>
-            <g fill="#fbf5ec">
-              <circle cx="118" cy="118" r="7"/><circle cx="134" cy="118" r="7"/><circle cx="150" cy="118" r="7"/>
-              <circle cx="126" cy="132" r="7"/><circle cx="142" cy="132" r="7"/><circle cx="134" cy="146" r="7"/>
-              <rect x="132" y="96" width="4" height="14" rx="2"/>
-              <path d="M136 104 c6 -8 14 -8 18 -4 c-6 6 -12 6 -18 4z"/>
-            </g>
-          </svg>
-          <p class="highlight__name">Weiß<span class="dot">•</span>Rosé<span class="dot">•</span>Rot</p>
+          <img src="bilder/gluehwein-tasse.webp" width="640" height="621" alt="Glühwein-Tasse – Weiß, Rosé und Rot">
           <p class="highlight__preis">Hausgemachter Glühwein · 0,2 l · 5,00 €</p>
         </div>
         <div class="highlight">
-          <svg viewBox="0 0 230 220" aria-hidden="true">
-            <defs><clipPath id="flasche"><rect x="40" y="56" width="140" height="150" rx="26"/></clipPath></defs>
-            <g clip-path="url(#flasche)">
-              <rect x="40" y="56" width="140" height="150" fill="#ee8e8e"/>
-              <polygon points="40,56 180,56 180,118 40,150" fill="#1f6e68"/>
-            </g>
-            <rect x="40" y="56" width="140" height="150" rx="26" fill="none" stroke="#164f55" stroke-width="8"/>
-            <rect x="76" y="20" width="68" height="30" rx="7" fill="#fbf5ec" stroke="#164f55" stroke-width="7"/>
-            <path d="M88 24v22M100 24v22M112 24v22M124 24v22M136 24v22" stroke="#164f55" stroke-width="3"/>
-            <g font-family="Inter Display, Inter, sans-serif" font-weight="900" font-style="italic" fill="#fbf5ec">
-              <text x="112" y="100" text-anchor="middle" font-size="27" transform="rotate(-8 112 100)">GIN-</text>
-              <text x="110" y="130" text-anchor="middle" font-size="27" transform="rotate(-8 110 130)">PUNSCH</text>
-            </g>
-            <text x="110" y="182" text-anchor="middle" font-family="Inter Display, Inter, sans-serif" font-weight="900" font-size="24" fill="#164f55">0,2 L</text>
-            <g stroke="#164f55" stroke-width="7" stroke-linecap="round"><path d="M196 34 l12 -22"/><path d="M204 52 l20 -10"/><path d="M206 72 l18 2"/></g>
-          </svg>
-          <p class="highlight__name">Gin-Punsch</p>
+          <img src="bilder/gin-punsch.webp" width="640" height="723" alt="Gin-Punsch im Fläschchen, 0,2 Liter">
           <p class="highlight__preis">Stark! · 0,2 l im Fläschchen · 8,00 €</p>
         </div>
       </div>
@@ -171,59 +109,15 @@
       <p class="trenner">Wein<span class="dot">•</span>Bier<span class="dot">•</span>Bissen</p>
 
       <ul class="bissen">
-        <li>
-          <svg viewBox="0 0 180 140" aria-hidden="true">
-            <path d="M24 70 C24 28 156 28 156 70 Z" fill="#f3c443"/>
-            <path d="M58 44 c14 -8 34 -10 50 -6" stroke="#fbe7a8" stroke-width="7" fill="none" stroke-linecap="round"/>
-            <path d="M14 80 c22 -12 44 6 70 -4 c26 -10 50 8 82 -2 l2 12 c-30 10 -56 -6 -82 4 c-26 10 -48 -6 -72 4z" fill="#e58c8c" stroke="#a3303a" stroke-width="3"/>
-            <path d="M18 92 c26 -8 50 6 76 -2 c24 -8 46 4 68 0 l-2 10 c-24 4 -44 -6 -68 2 c-26 8 -50 -6 -74 2z" fill="#c95b63"/>
-            <path d="M26 104 h128 c0 18 -14 26 -30 26 h-68 c-16 0 -30 -8 -30 -26z" fill="#f3c443"/>
-          </svg>
-          <span>Schäufele-<br>Weckla</span>
-        </li>
-        <li>
-          <svg viewBox="0 0 180 140" aria-hidden="true">
-            <path d="M24 66 C24 24 156 24 156 66 Z" fill="#f3c443"/>
-            <path d="M58 40 c14 -8 34 -10 50 -6" stroke="#fbe7a8" stroke-width="7" fill="none" stroke-linecap="round"/>
-            <path d="M18 74 h134 l12 10 v18 h-134 l-12 -10z" fill="#a3303a"/>
-            <path d="M18 74 h134 v18 h-134z" fill="#f2a5a5"/>
-            <path d="M152 74 l12 10 v18 l-12 -10z" fill="#c95b63"/>
-            <path d="M26 106 h128 c0 16 -14 24 -30 24 h-68 c-16 0 -30 -8 -30 -24z" fill="#f3c443"/>
-          </svg>
-          <span>Leberkäs-<br>Weckla</span>
-        </li>
-        <li>
-          <svg viewBox="0 0 180 140" aria-hidden="true">
-            <g fill="none" stroke="#1f6e68" stroke-width="6" stroke-linecap="round">
-              <path d="M70 46 c-8 -10 8 -16 0 -28"/><path d="M90 46 c-8 -10 8 -16 0 -28"/><path d="M110 46 c-8 -10 8 -16 0 -28"/>
-            </g>
-            <path d="M20 66 h140 c0 38 -30 64 -70 64 s-70 -26 -70 -64z" fill="#164f55"/>
-            <ellipse cx="90" cy="66" rx="70" ry="14" fill="#164f55"/>
-            <ellipse cx="90" cy="66" rx="62" ry="10" fill="#f39b4a"/>
-            <path d="M64 66 c10 -6 40 -6 52 0 c-10 4 -40 4 -52 0z" fill="#f9c48c"/>
-            <path d="M88 62 c-6 -6 -2 -12 4 -10 c4 4 2 8 -4 10z M94 62 c4 -8 12 -8 12 -2 c-4 4 -8 4 -12 2z" fill="#4f9b5c"/>
-          </svg>
-          <span>Suppen</span>
-        </li>
-        <li>
-          <svg viewBox="0 0 180 140" aria-hidden="true">
-            <path d="M14 96 L120 62 L170 82 L64 118Z" fill="#164f55"/>
-            <path d="M14 96 L64 118 L64 128 L14 106Z" fill="#0f3a3f"/>
-            <path d="M64 118 L170 82 L170 92 L64 128Z" fill="#1f6e68"/>
-            <path d="M96 52 L150 28 L152 70 L104 86Z" fill="#f3c443"/>
-            <path d="M96 52 L150 28 L158 34 L104 58Z" fill="#fbe08a"/>
-            <g fill="#e0a92a"><circle cx="118" cy="56" r="5"/><circle cx="136" cy="64" r="4"/><circle cx="128" cy="44" r="3.5"/><circle cx="112" cy="72" r="3.5"/></g>
-            <circle cx="52" cy="84" r="18" fill="#c94b52"/><circle cx="52" cy="84" r="13" fill="#e88f95"/>
-            <circle cx="80" cy="90" r="18" fill="#c94b52"/><circle cx="80" cy="90" r="13" fill="#e88f95"/>
-            <g fill="#fbf5ec"><circle cx="48" cy="80" r="2"/><circle cx="56" cy="88" r="2"/><circle cx="76" cy="86" r="2"/><circle cx="84" cy="94" r="2"/><circle cx="80" cy="88" r="1.6"/></g>
-          </svg>
-          <span>Brotzeit-<br>platten</span>
-        </li>
+        <li><img src="bilder/schaeufele-weckla.webp" width="480" height="523" loading="lazy" alt="Schäufele-Weckla"></li>
+        <li><img src="bilder/leberkaes-weckla.webp" width="480" height="612" loading="lazy" alt="Leberkäs-Weckla"></li>
+        <li><img src="bilder/suppen.webp" width="480" height="512" loading="lazy" alt="Suppen"></li>
+        <li><img src="bilder/brotzeitplatten.webp" width="480" height="528" loading="lazy" alt="Brotzeitplatten"></li>
       </ul>
     </div>
 
-    <div class="slogan" role="presentation">
-      <p>Fränkisch. Ehrlich. <u>Saufein.</u></p>
+    <div class="slogan">
+      <img src="bilder/slogan.webp" width="1600" height="281" loading="lazy" alt="Fränkisch. Ehrlich. Saufein.">
     </div>
 
     <div class="huelle cta-zeile">
@@ -288,7 +182,7 @@
 
       <div class="karten-fuss">
         <span><strong>Kein Tassenpfand.</strong></span>
-        <span><strong>Nur Barzahlung.</strong></span>
+        <span><strong>Bezahlt wird bar.</strong> Gruppen &amp; Reservierungen nach Absprache auch auf Rechnung per Überweisung.</span>
         <span>Alle Preise in Euro inkl. MwSt.</span>
       </div>
     </div>
@@ -340,6 +234,7 @@
           <li><span class="zahl">6+</span><div><b>Ab 6 Personen</b><span>Nach oben offen – sagt uns einfach, wie viele ihr seid.</span></div></li>
           <li><span class="zahl">⏰</span><div><b>Zu allen Öffnungszeiten</b><span>Am besten ein paar Tage vorher anfragen, vor allem im Dezember.</span></div></li>
           <li><span class="zahl">15</span><div><b>Mir halten den Tisch 15 Minuten</b><span>Wer später kommt, dem geben mir den Tisch leider wieder frei.</span></div></li>
+          <li><span class="zahl">€</span><div><b>Auch auf Rechnung</b><span>Für Gruppen und Reservierungen geht nach Rücksprache auch Rechnung mit Überweisung – sonst wird bar bezahlt.</span></div></li>
           <li><span class="zahl">✓</span><div><b>Fest erst mit Bestätigung</b><span>Die Anfrage ist noch keine Buchung. Erst mit unserer Antwort per E-Mail steht euer Tisch.</span></div></li>
         </ul>
       </div>
@@ -377,6 +272,14 @@
             <label for="f-telefon">Telefon</label>
             <input id="f-telefon" name="telefon" type="tel" autocomplete="tel">
             <div class="klein">Falls mir kurz Rückfragen haben</div>
+          </div>
+          <div class="feld breit">
+            <label for="f-zahlung">Bezahlung</label>
+            <select id="f-zahlung" name="zahlung">
+              <option value="Bar vor Ort">Bar vor Ort</option>
+              <option value="Rechnung / Überweisung (nach Rücksprache)">Rechnung / Überweisung (nach Rücksprache)</option>
+            </select>
+            <div class="klein">Rechnung klären mir mit dir per E-Mail oder Telefon.</div>
           </div>
           <div class="feld breit">
             <label for="f-nachricht">Nachricht</label>
@@ -435,7 +338,7 @@
             <li><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#7fb3ae"/><g fill="none" stroke="#164f55" stroke-width="2.6" stroke-linecap="round"><circle cx="18" cy="9" r="2.4" fill="#164f55" stroke="none"/><path d="M17 13 v7 h6 l3 6"/><path d="M14 17 a7 7 0 1 0 9 9"/></g></svg><span><b>Barrierefrei zugänglich</b></span></li>
             <li><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#ee8e8e"/><path d="M6 18 L18 8 L30 18Z" fill="#164f55"/><path d="M11 18 v10 M25 18 v10" stroke="#164f55" stroke-width="2.6"/><path d="M15 24 c2 -3 4 -3 6 0" stroke="#f3c443" stroke-width="2.6" fill="none"/></svg><span><b>Hof überdacht</b> – Wärmepilze gibt's an einem Teil der Plätze</span></li>
             <li><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#f3c443"/><rect x="9" y="12" width="18" height="12" rx="2" fill="#fbf5ec" stroke="#164f55" stroke-width="2"/><path d="M8 28 L28 8" stroke="#d7262b" stroke-width="3" stroke-linecap="round"/></svg><span><b>Kein Museumsticket nötig</b></span></li>
-            <li><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#7fb3ae"/><rect x="7" y="12" width="22" height="13" rx="2" fill="#8cc68f" stroke="#164f55" stroke-width="2"/><circle cx="18" cy="18.5" r="3.4" fill="none" stroke="#164f55" stroke-width="2"/></svg><span><b>Nur Barzahlung</b> – keine Kartenzahlung</span></li>
+            <li><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#7fb3ae"/><rect x="7" y="12" width="22" height="13" rx="2" fill="#8cc68f" stroke="#164f55" stroke-width="2"/><circle cx="18" cy="18.5" r="3.4" fill="none" stroke="#164f55" stroke-width="2"/></svg><span><b>Barzahlung</b> – keine Kartenzahlung. Gruppen &amp; Reservierungen nach Absprache auch auf Rechnung</span></li>
           </ul>
         </div>
 
@@ -471,7 +374,7 @@
       <div>
         <h4>Besuch</h4>
         <p>Glühschwein – Die gute Bude am Spielzeugmuseum<br>Karlstraße 13–15<br>90403 Nürnberg</p>
-        <p>Nur Barzahlung</p>
+        <p>Barzahlung · Gruppen auch auf Rechnung</p>
       </div>
       <div>
         <h4>Kontakt</h4>
