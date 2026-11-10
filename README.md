@@ -23,7 +23,7 @@ Keine Cookies, kein Tracking, Schrift selbst gehostet → kein Cookie-Banner nö
 - **Formspree-ID** → `index.html`, im `<form action="https://formspree.io/f/DEINE-ID">`
 - **E-Mail, Telefon** → Fußzeile in `index.html`, `impressum.html`, `datenschutz.html`
 
-**Fensterlicht:** `bilder/fenster-an.webp` (leuchtend) und `bilder/fenster-aus.webp` (dunkel) liegen über `bilder/einstieg.webp`. Welche Ebene sichtbar ist, entscheidet `js/main.js` anhand der Öffnungszeiten. Wird das Einstiegsbild ausgetauscht, müssen die beiden Fenster-Ebenen neu erzeugt werden.
+**Fensterlicht:** `bilder/fenster-an.webp` (leuchtende Fenster) liegt über `bilder/einstieg.webp` und wird nur während der Öffnungszeit eingeblendet – das entscheidet `js/main.js`. Geschlossen ist das Originalbild mit weißen Fenstern zu sehen. Wird das Einstiegsbild ausgetauscht, muss die Fenster-Ebene neu erzeugt werden.
 
 Gelb hinterlegte Stellen (`class="platzhalter"`) sind noch offen.
 

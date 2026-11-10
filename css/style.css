@@ -123,9 +123,9 @@ p { margin: 0 0 1em; }
 .hero { position: relative; overflow: hidden; padding-top: 12px; padding-bottom: clamp(48px, 7vw, 80px); }
 .einstieg { position: relative; max-width: 1800px; margin: 0 auto; }
 .hero__bild { width: 100%; height: auto; }
-/* Fensterlicht: leuchtet nur während der Öffnungszeit (Klasse kommt aus js/main.js) */
+/* Fensterlicht: leuchtet nur während der Öffnungszeit (Klasse kommt aus js/main.js).
+   Geschlossen: Original-Bild mit weißen Fenstern. */
 .fenster { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0; transition: opacity 1.2s ease; }
-.ist-zu .fenster--aus { opacity: 1; }
 .ist-offen .fenster--an { opacity: 1; animation: kerzenschein 4s ease-in-out infinite; }
 @keyframes kerzenschein { 0%, 100% { opacity: 1; } 35% { opacity: .82; } 55% { opacity: .95; } 75% { opacity: .86; } }
 @media (prefers-reduced-motion: reduce) { .ist-offen .fenster--an { animation: none; } }
