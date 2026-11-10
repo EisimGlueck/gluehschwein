@@ -34,6 +34,20 @@
     var m = d.getMonth() + 1, t = d.getDate();
     return d.getFullYear() + "-" + (m < 10 ? "0" : "") + m + "-" + (t < 10 ? "0" : "") + t;
   }
+  /* Aktuelle Uhrzeit in Nürnberg – unabhängig davon, wo der Besucher gerade ist.
+     Gibt ein Date zurück, dessen Tag/Stunde/Minute der Nürnberger Ortszeit entsprechen. */
+  function nuernbergJetzt() {
+    try {
+      var teile = {};
+      new Intl.DateTimeFormat("de-DE", {
+        timeZone: "Europe/Berlin", year: "numeric", month: "2-digit", day: "2-digit",
+        hour: "2-digit", minute: "2-digit", second: "2-digit", hourCycle: "h23"
+      }).formatToParts(new Date()).forEach(function (t) { teile[t.type] = t.value; });
+      return new Date(+teile.year, +teile.month - 1, +teile.day, +teile.hour, +teile.minute, +teile.second);
+    } catch (e) {
+      return new Date();
+    }
+  }
   function ausIso(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
   function deutsch(s) { var p = s.split("-"); return p[2] + "." + p[1] + "." + p[0]; }
 
@@ -53,7 +67,7 @@
   var statusBox = document.getElementById("status");
   var statusText = document.getElementById("status-text");
   function statusAktualisieren() {
-    var jetztDatum = new Date();
+    var jetztDatum = nuernbergJetzt();
     var heute = iso(jetztDatum);
     var z = zeitenAm(heute);
     var offen = false, text;
@@ -110,7 +124,7 @@
     });
   }
   var jahr = document.getElementById("jahr");
-  if (jahr) jahr.textContent = new Date().getFullYear();
+  if (jahr) jahr.textContent = nuernbergJetzt().getFullYear();
 
   /* ---------- 4. RESERVIERUNGSFORMULAR ---------- */
   var form = document.getElementById("reservierungs-formular");
@@ -121,7 +135,7 @@
     var meldung = document.getElementById("formular-meldung");
 
     // Frühestes Datum: heute (oder Saisonstart)
-    var heuteIso = iso(new Date());
+    var heuteIso = iso(nuernbergJetzt());
     datum.min = heuteIso > SAISON.start ? heuteIso : SAISON.start;
     datum.max = SAISON.ende;
 
@@ -176,7 +190,7 @@
       ["Mo","Di","Mi","Do","Fr","Sa","So"].forEach(function (w) { h += '<span class="kal-wt" aria-hidden="true">' + w + '</span>'; });
       var erster = new Date(j, m, 1), versatz = (erster.getDay() + 6) % 7;
       for (var i = 0; i < versatz; i++) h += '<span class="kal-leer"></span>';
-      var tage = new Date(j, m + 1, 0).getDate(), heute = iso(new Date());
+      var tage = new Date(j, m + 1, 0).getDate(), heute = iso(nuernbergJetzt());
       for (var t = 1; t <= tage; t++) {
         var d = iso(new Date(j, m, t)), z = zeitenAm(d), ok = waehlbar(d);
         var klasse = "kal-tag" + (z === null && d >= datum.min ? " zu" : "") + (ok && Object.prototype.hasOwnProperty.call(SAISON.sonder, d) ? " sonder" : "") + (d === heute ? " heute" : "");
