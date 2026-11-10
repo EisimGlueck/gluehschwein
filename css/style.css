@@ -320,8 +320,14 @@ p { margin: 0 0 1em; }
 .optionen { display: flex; flex-wrap: wrap; gap: 8px; }
 .option { position: relative; display: inline-flex; cursor: pointer; }
 .option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-.option span { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; border: 2px solid var(--rahmen); border-radius: 999px; background: #fff; font-size: 15px; color: var(--text); transition: background .15s, border-color .15s, color .15s; }
-.option:hover span { border-color: var(--farbe-primaer); }
+.option span { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; border: 2px solid var(--rahmen); border-radius: 999px; background: #fff; font-size: 15px; color: var(--text); transition: background .15s, border-color .15s, color .15s, transform .15s, opacity .15s, box-shadow .15s; }
+@media (hover: hover) and (pointer: fine) {
+  /* Beim Drüberfahren: Knopf leuchtet im Logo-Gelb */
+  .option:hover span { background: var(--farbe-logo-gelb); border-color: var(--farbe-logo-gelb); color: var(--farbe-navy); font-weight: 600; transform: translateY(-2px); box-shadow: 0 4px 0 #d9a900; }
+  .option:hover input:checked + span { background: var(--farbe-primaer); border-color: var(--farbe-logo-gelb); color: #fff; box-shadow: 0 0 0 3px var(--farbe-logo-gelb); }
+  /* Bereiche mit Bild: die anderen treten zurück, damit der aktuelle heraussticht */
+  .optionen--bilder:hover .option:not(:hover) span { opacity: .45; }
+}
 .option input:checked + span { background: var(--farbe-primaer); border-color: var(--farbe-primaer); color: #fff; font-weight: 600; }
 .option input:focus-visible + span { outline: 3px solid var(--farbe-akzent); outline-offset: 2px; }
 .optionen--tage .option span { min-width: 54px; justify-content: center; }
