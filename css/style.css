@@ -121,8 +121,7 @@ p { margin: 0 0 1em; }
 
 /* ---------- Hero ---------- */
 .hero { position: relative; overflow: hidden; padding-top: 12px; padding-bottom: clamp(48px, 7vw, 80px); }
-.hero__skyline { width: 100%; height: auto; position: relative; z-index: 1; }
-@media (max-width: 560px) { .hero__skyline { height: 170px; object-fit: cover; object-position: center bottom; } }
+.hero__bild { width: 100%; max-width: 1800px; height: auto; margin: 0 auto; }
 .band {
   position: relative;
   background: var(--farbe-band);
