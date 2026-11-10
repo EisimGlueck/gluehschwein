@@ -59,6 +59,7 @@ body {
   overflow-x: hidden;
 }
 img, svg { max-width: 100%; display: block; }
+img { height: auto; }
 a { color: var(--farbe-primaer); }
 a:hover { color: var(--farbe-primaer-dunkel); }
 h1, h2, h3 { font-family: var(--schrift-ueberschrift); font-weight: 900; line-height: 1.05; margin: 0 0 .5em; letter-spacing: .01em; }
